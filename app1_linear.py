@@ -76,7 +76,33 @@ with st.expander("📊 Table of Values (x from -5 to 5)"):
 # Challenge Mode - Equation Entry
 st.divider()
 st.subheader("🎯 Challenge Mode - Write the Equation!")
-
+# Quick difficulty buttons
+st.markdown("**Choose difficulty:**")
+col1, col2, col3 = st.columns(3)
+with col1:
+    if st.button("😊 Easy (m: 1-3)"):
+        st.session_state['q_m'] = random.randint(1, 3)
+        st.session_state['q_c'] = random.randint(1, 5)
+        st.session_state['question_active'] = True
+        st.session_state['attempts'] = 0
+        st.session_state['answered'] = False
+        st.rerun()
+with col2:
+    if st.button("🤔 Medium (m: -5 to 5)"):
+        st.session_state['q_m'] = random.randint(-5, 5)
+        st.session_state['q_c'] = random.randint(-10, 10)
+        st.session_state['question_active'] = True
+        st.session_state['attempts'] = 0
+        st.session_state['answered'] = False
+        st.rerun()
+with col3:
+    if st.button("😈 Hard (m: -8 to 8)"):
+        st.session_state['q_m'] = random.randint(-8, 8)
+        st.session_state['q_c'] = random.randint(-15, 15)
+        st.session_state['question_active'] = True
+        st.session_state['attempts'] = 0
+        st.session_state['answered'] = False
+        st.rerun()
 if st.button("🔄 Generate New Question"):
     st.session_state['q_m'] = random.randint(-5, 5)
     st.session_state['q_c'] = random.randint(-10, 10)
@@ -182,4 +208,9 @@ with st.expander("💡 Teacher's Notes"):
     """)
 
 st.divider()
-st.markdown("👩‍🏫 **Created for Mathematics Students** | Move the sliders and explore!")
+st.caption("📖 Created with ❤️ for Mathematics Students | Share this app with your classmates!")
+
+# Export button
+if st.button("📥 Export Lesson as PDF"):
+    st.info("📄 To save as PDF: Press **Ctrl+P** and select **Save as PDF**")
+    st.balloons()
