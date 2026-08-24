@@ -24,7 +24,7 @@ Welcome to the Math Lab! Explore math through interactive graphs and challenges.
 # Use HTML link instead of st.page_link
 st.markdown("""
 <div style="text-align: center;">
-    <a href="https://math-lab-umf7fzwm4xpdo2fhauwhls.streamlit.app/app1_linear" target="_blank" style="
+    <a href="https://math-lab-nfwbmpekzmcjaqbt97zfce.streamlit.app/" target="_blank" style="
         display: inline-block;
         padding: 12px 32px;
         background-color: #6c63ff;
@@ -54,7 +54,7 @@ st.markdown("""
 
 st.markdown("""
 <div style="text-align: center;">
-    <a href="https://math-lab-umf7fzwm4xpdo2fhauwhls.streamlit.app/app2_quadratic" target="_blank" style="
+    <a href="https://math-lab-fmdbv9utg75beebjgmg5cw.streamlit.app/" target="_blank" style="
         display: inline-block;
         padding: 12px 32px;
         background-color: #ff6b6b;
