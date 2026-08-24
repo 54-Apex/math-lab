@@ -1,5 +1,70 @@
 import streamlit as st
 
+# Custom CSS for modern design
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    .stApp {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+    .stSlider > div {
+        background: rgba(255,255,255,0.5);
+        padding: 1rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.6rem 2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .stButton > button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    }
+    
+    .stSuccess {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+    }
+    
+    .stError {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+    }
+    
+    .stWarning {
+        background: linear-gradient(135deg, #f2994a 0%, #f2c94a 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+    }
+    
+    .stInfo {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 st.set_page_config(
     page_title="Math Lab",
     page_icon="📐",
