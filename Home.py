@@ -5,12 +5,16 @@ st.set_page_config(
     page_icon="📐",
     layout="centered"
 )
-# Custom CSS for modern design with animated background
+# Custom CSS for modern design - Optimized for mobile
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
     
-    * { font-family: 'Inter', sans-serif; }
+    * { 
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
     
     /* Hide Streamlit Branding */
     #MainMenu {visibility: hidden;}
@@ -37,11 +41,11 @@ st.markdown("""
         background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
         background-size: 300% 300%;
         animation: heroBG 8s ease infinite;
-        padding: 4rem 2rem;
-        border-radius: 24px;
+        padding: 3rem 1.5rem;
+        border-radius: 20px;
         text-align: center;
         color: white;
-        margin: 2rem 0 3rem 0;
+        margin: 1.5rem 0 2rem 0;
         box-shadow: 0 25px 80px rgba(102, 126, 234, 0.4);
         position: relative;
         overflow: hidden;
@@ -53,58 +57,43 @@ st.markdown("""
         100% { background-position: 0% 50%; }
     }
     
-    /* === FLOATING PARTICLES (subtle) === */
-    .hero::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.03) 0%, transparent 60%);
-        animation: floatParticles 20s linear infinite;
-        pointer-events: none;
-    }
-    
-    @keyframes floatParticles {
-        0% { transform: translate(0, 0) rotate(0deg); }
-        100% { transform: translate(10%, 5%) rotate(360deg); }
-    }
-    
-    /* === REST OF YOUR CSS === */
     .hero .emoji {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         position: relative;
     }
     
     .hero h1 {
-        font-size: 4rem;
+        font-size: 2.8rem;
         font-weight: 900;
-        letter-spacing: -2px;
+        letter-spacing: -1px;
         position: relative;
         background: linear-gradient(to right, #fff, #e0e7ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        line-height: 1.2;
     }
     
     .hero p {
-        font-size: 1.3rem;
-        opacity: 0.9;
+        font-size: 1.1rem;
+        font-weight: 500;
+        opacity: 0.95;
         max-width: 600px;
-        margin: 0 auto;
+        margin: 0.8rem auto 0;
         position: relative;
         -webkit-text-fill-color: white;
+        line-height: 1.6;
     }
     
     .hero .badge {
         display: inline-block;
         background: rgba(255,255,255,0.15);
         backdrop-filter: blur(10px);
-        padding: 0.4rem 1.5rem;
+        padding: 0.5rem 1.5rem;
         border-radius: 50px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        font-weight: 600;
         margin-top: 1rem;
         position: relative;
         -webkit-text-fill-color: white;
@@ -121,15 +110,15 @@ st.markdown("""
     .card-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        margin: 2rem 0;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
     }
     
     .card {
-        background: rgba(255,255,255,0.05);
+        background: rgba(255,255,255,0.06);
         backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 2.5rem;
+        border-radius: 20px;
+        padding: 2rem 1.5rem;
         box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border: 1px solid rgba(255,255,255,0.08);
@@ -137,37 +126,40 @@ st.markdown("""
     }
     
     .card:hover {
-        transform: translateY(-12px) scale(1.01);
+        transform: translateY(-8px) scale(1.01);
         box-shadow: 0 30px 80px rgba(0,0,0,0.4);
         border-color: rgba(255,255,255,0.2);
     }
     
     .card .icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
+        font-size: 3.5rem;
+        margin-bottom: 0.8rem;
     }
     
     .card h2 {
         color: white;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 800;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.5px;
     }
     
     .card p {
-        color: rgba(255,255,255,0.7);
-        font-size: 1rem;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.95rem;
+        font-weight: 400;
         line-height: 1.7;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
     }
     
     .card .features {
         text-align: left;
-        color: rgba(255,255,255,0.85);
-        font-size: 0.95rem;
+        color: rgba(255,255,255,0.9);
+        font-size: 0.9rem;
+        font-weight: 400;
         list-style: none;
         padding: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .card .features li {
@@ -176,6 +168,7 @@ st.markdown("""
         align-items: center;
         gap: 0.7rem;
         border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-weight: 400;
     }
     
     .card .features li:last-child {
@@ -186,12 +179,13 @@ st.markdown("""
         content: "✦";
         color: #f093fb;
         font-size: 1.2rem;
+        flex-shrink: 0;
     }
     
     /* === BUTTONS === */
     .btn {
         display: inline-block;
-        padding: 0.9rem 2.5rem;
+        padding: 0.8rem 2rem;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 700;
@@ -200,7 +194,7 @@ st.markdown("""
         border: none;
         cursor: pointer;
         width: 100%;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
     }
     
     .btn-primary {
@@ -212,7 +206,7 @@ st.markdown("""
     }
     
     .btn-primary:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         box-shadow: 0 12px 40px rgba(102, 126, 234, 0.6);
     }
     
@@ -225,7 +219,7 @@ st.markdown("""
     }
     
     .btn-secondary:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         box-shadow: 0 12px 40px rgba(245, 87, 108, 0.6);
     }
     
@@ -243,14 +237,14 @@ st.markdown("""
     .stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        margin: 3rem 0 2rem 0;
+        gap: 1rem;
+        margin: 2rem 0 1.5rem 0;
     }
     
     .stat-card {
         background: rgba(255,255,255,0.05);
         backdrop-filter: blur(10px);
-        padding: 1.5rem;
+        padding: 1.2rem;
         border-radius: 16px;
         text-align: center;
         border: 1px solid rgba(255,255,255,0.08);
@@ -263,7 +257,7 @@ st.markdown("""
     }
     
     .stat-card .number {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         font-weight: 900;
         background: linear-gradient(-45deg, #667eea, #f093fb);
         background-size: 200% 200%;
@@ -273,8 +267,9 @@ st.markdown("""
     }
     
     .stat-card .label {
-        color: rgba(255,255,255,0.6);
-        font-size: 0.9rem;
+        color: rgba(255,255,255,0.7);
+        font-size: 0.85rem;
+        font-weight: 400;
         margin-top: 0.3rem;
         display: block;
     }
@@ -282,11 +277,12 @@ st.markdown("""
     /* === FOOTER === */
     .footer {
         text-align: center;
-        padding: 2.5rem 0 1rem 0;
-        color: rgba(255,255,255,0.3);
+        padding: 2rem 0 1rem 0;
+        color: rgba(255,255,255,0.35);
         font-size: 0.85rem;
         border-top: 1px solid rgba(255,255,255,0.05);
-        margin-top: 2rem;
+        margin-top: 1.5rem;
+        font-weight: 400;
     }
     
     .footer .heart {
@@ -299,22 +295,90 @@ st.markdown("""
         50% { transform: scale(1.3); }
     }
     
-    /* === RESPONSIVE === */
+    /* === RESPONSIVE - MOBILE FIXES === */
     @media (max-width: 768px) {
         .card-grid {
             grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+        .stats {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+        .stats .stat-card:last-child {
+            grid-column: span 2;
+        }
+        .hero {
+            padding: 2rem 1.2rem;
+            margin: 1rem 0 1.5rem 0;
+            border-radius: 16px;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+        .hero p {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.95;
+            -webkit-text-fill-color: white;
+        }
+        .hero .emoji {
+            font-size: 3rem;
+        }
+        .hero .badge {
+            font-size: 0.8rem;
+            padding: 0.4rem 1.2rem;
+        }
+        .card {
+            padding: 1.5rem 1.2rem;
+            border-radius: 16px;
+        }
+        .card h2 {
+            font-size: 1.3rem;
+        }
+        .card p {
+            font-size: 0.9rem;
+        }
+        .card .features {
+            font-size: 0.85rem;
+        }
+        .btn {
+            font-size: 0.9rem;
+            padding: 0.7rem 1.5rem;
+        }
+        .stat-card .number {
+            font-size: 1.8rem;
+        }
+        .stat-card .label {
+            font-size: 0.75rem;
+        }
+        .footer {
+            font-size: 0.75rem;
+        }
+    }
+    
+    /* === EXTRA SMALL PHONES === */
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 1.8rem;
+        }
+        .hero p {
+            font-size: 0.9rem;
+        }
+        .card h2 {
+            font-size: 1.1rem;
+        }
+        .card p {
+            font-size: 0.85rem;
         }
         .stats {
             grid-template-columns: 1fr;
         }
-        .hero h1 {
-            font-size: 2.5rem;
+        .stats .stat-card:last-child {
+            grid-column: span 1;
         }
-        .hero {
-            padding: 2.5rem 1.5rem;
-        }
-        .card {
-            padding: 1.8rem;
+        .stat-card {
+            padding: 0.8rem;
         }
     }
 </style>
