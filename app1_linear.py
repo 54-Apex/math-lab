@@ -22,9 +22,9 @@ x = np.linspace(-10, 10, 200)
 y = m * x + c
 
 # Point selector
-x_display = st.slider("🔍 Show point at x =", -10, 10, 0, 1)
+x_display = st.slider(" Show point at x =", -10, 10, 0, 1)
 y_display = m * x_display + c
-st.markdown(f"**📍 At x = {x_display}, y = {y_display:.2f}**")
+st.markdown(f"** At x = {x_display}, y = {y_display:.2f}**")
 
 # Create plot
 fig, ax = plt.subplots(figsize=(8, 5))
@@ -60,7 +60,7 @@ if abs(m) > 0.1:
 st.pyplot(fig)
 
 # Table of values
-with st.expander("📊 Table of Values (x from -5 to 5)"):
+with st.expander(" Table of Values (x from -5 to 5)"):
     x_vals = np.arange(-5, 6, 1)
     y_vals = m * x_vals + c
     table_data = {"x": x_vals, "y": [f"{y:.2f}" for y in y_vals]}
@@ -75,12 +75,12 @@ with st.expander("📊 Table of Values (x from -5 to 5)"):
 
 # Challenge Mode - Equation Entry
 st.divider()
-st.subheader("🎯 Challenge Mode - Write the Equation!")
+st.subheader(" Challenge Mode - Write the Equation!")
 # Quick difficulty buttons
 st.markdown("**Choose difficulty:**")
 col1, col2, col3 = st.columns(3)
 with col1:
-    if st.button("😊 Easy (m: 1-3)"):
+    if st.button(" Easy (m: 1-3)"):
         st.session_state['q_m'] = random.randint(1, 3)
         st.session_state['q_c'] = random.randint(1, 5)
         st.session_state['question_active'] = True
@@ -88,7 +88,7 @@ with col1:
         st.session_state['answered'] = False
         st.rerun()
 with col2:
-    if st.button("🤔 Medium (m: -5 to 5)"):
+    if st.button(" Medium (m: -5 to 5)"):
         st.session_state['q_m'] = random.randint(-5, 5)
         st.session_state['q_c'] = random.randint(-10, 10)
         st.session_state['question_active'] = True
@@ -96,7 +96,7 @@ with col2:
         st.session_state['answered'] = False
         st.rerun()
 with col3:
-    if st.button("😈 Hard (m: -8 to 8)"):
+    if st.button(" Hard (m: -8 to 8)"):
         st.session_state['q_m'] = random.randint(-8, 8)
         st.session_state['q_c'] = random.randint(-15, 15)
         st.session_state['question_active'] = True
@@ -112,7 +112,7 @@ if st.button("🔄 Generate New Question"):
 
 if 'question_active' in st.session_state and st.session_state['question_active']:
     st.markdown(f"""
-    ### 📝 Your Task:
+    ###  Your Task:
     Write the equation of the line with:
     - **Slope (m) = {st.session_state['q_m']}**
     - **y-intercept (c) = {st.session_state['q_c']}**
@@ -153,16 +153,16 @@ if 'question_active' in st.session_state and st.session_state['question_active']
                 
                 if st.session_state['attempts'] >= 3:
                     st.error(f"❌ The correct answer is **y = {st.session_state['q_m']}x + {st.session_state['q_c']}**")
-                    st.info("💡 Remember: **y = mx + c** where m is slope and c is y-intercept!")
+                    st.info("Remember: **y = mx + c** where m is slope and c is y-intercept!")
                     st.session_state['answered'] = True
                 else:
                     st.warning(f"❌ Not quite. Try again! ({remaining} attempts remaining)")
                     
                     # Give a hint
                     if st.session_state['q_c'] < 0:
-                        st.info(f"💡 Hint: Since c = {st.session_state['q_c']}, your equation should end with **- {abs(st.session_state['q_c'])}**")
+                        st.info(f"Hint: Since c = {st.session_state['q_c']}, your equation should end with **- {abs(st.session_state['q_c'])}**")
                     else:
-                        st.info(f"💡 Hint: Since c = {st.session_state['q_c']}, your equation should end with **+ {st.session_state['q_c']}**")
+                        st.info(f"Hint: Since c = {st.session_state['q_c']}, your equation should end with **+ {st.session_state['q_c']}**")
     
     with col2:
         if st.button("🔄 New Question", disabled=st.session_state.get('answered', False)):
@@ -174,7 +174,7 @@ if 'question_active' in st.session_state and st.session_state['question_active']
             st.rerun()
     
     # Show the correct format example
-    with st.expander("📖 How to type your answer"):
+    with st.expander("How to type your answer"):
         st.markdown("""
         Type the equation exactly like this:
         - **y = 2x + 3** (for m=2, c=3)
@@ -185,7 +185,7 @@ if 'question_active' in st.session_state and st.session_state['question_active']
         """)
 
 # Teacher Notes
-with st.expander("💡 Teacher's Notes"):
+with st.expander("Teacher's Notes"):
     st.markdown(f"""
     ### Key Concepts for Students:
     
@@ -208,7 +208,7 @@ with st.expander("💡 Teacher's Notes"):
     """)
 
 st.divider()
-st.caption("📖 Created with ❤️ for Mathematics Students | Share this app with your classmates!")
+st.caption("Created with love ❤️ for Mathematics Students | Share this app with your classmates!")
 
 # Export button
 if st.button("📥 Export Lesson as PDF"):
