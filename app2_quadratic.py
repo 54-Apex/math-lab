@@ -6,7 +6,266 @@ import math
 import sympy as sp
 import re
 
+
 st.set_page_config(page_title="Quadratic Explorer", page_icon="📈")
+
+# Custom CSS for modern design with animated background
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    
+    /* Hide Streamlit Branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    .stDeployButton {display: none;}
+    
+    /* === ANIMATED GRADIENT BACKGROUND === */
+    .stApp {
+        background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        min-height: 100vh;
+    }
+    
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* === CONTAINERS === */
+    .stMarkdown, .stSlider, .stSelectbox, .stNumberInput {
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(10px);
+        padding: 1.2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.08);
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stMarkdown:hover, .stSlider:hover {
+        background: rgba(255,255,255,0.08);
+    }
+    
+    /* === SLIDERS === */
+    .stSlider > div {
+        background: rgba(255,255,255,0.05);
+        padding: 0.5rem 0;
+        border-radius: 12px;
+    }
+    
+    .stSlider label {
+        color: rgba(255,255,255,0.9) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* === BUTTONS === */
+    .stButton > button {
+        background: linear-gradient(-45deg, #667eea, #764ba2);
+        background-size: 200% 200%;
+        animation: btnGlow 4s ease-in-out infinite;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.7rem 2rem;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .stButton > button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+    }
+    
+    @keyframes btnGlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    /* === TABS === */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 0.5rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: 16px;
+        padding: 0.5rem;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 12px;
+        padding: 0.7rem 1.5rem;
+        color: rgba(255,255,255,0.6);
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        color: white;
+        background: rgba(255,255,255,0.05);
+    }
+    
+    .stTabs [data-baseweb="tab"][aria-selected="true"] {
+        background: linear-gradient(-45deg, #667eea, #764ba2);
+        background-size: 200% 200%;
+        animation: tabGlow 3s ease-in-out infinite;
+        color: white;
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    @keyframes tabGlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    /* === EXPANDER === */
+    .streamlit-expanderHeader {
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        color: rgba(255,255,255,0.9) !important;
+        font-weight: 600;
+        border: 1px solid rgba(255,255,255,0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    
+    .streamlit-expanderContent {
+        background: rgba(255,255,255,0.02);
+        border-radius: 0 0 12px 12px;
+        padding: 1rem;
+        border: 1px solid rgba(255,255,255,0.05);
+        border-top: none;
+    }
+    
+    /* === METRICS === */
+    [data-testid="stMetric"] {
+        background: rgba(255,255,255,0.05);
+        border-radius: 16px;
+        padding: 1rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+    
+    [data-testid="stMetric"]:hover {
+        transform: scale(1.02);
+        background: rgba(255,255,255,0.08);
+    }
+    
+    [data-testid="stMetric"] label {
+        color: rgba(255,255,255,0.7) !important;
+        font-weight: 600 !important;
+    }
+    
+    [data-testid="stMetric"] div {
+        color: white !important;
+        font-weight: 800 !important;
+    }
+    
+    /* === TEXT COLORS === */
+    h1, h2, h3, h4 {
+        color: white !important;
+    }
+    
+    p, li, label {
+        color: rgba(255,255,255,0.85) !important;
+    }
+    
+    .stMarkdown {
+        color: rgba(255,255,255,0.85) !important;
+    }
+    
+    /* === ALERTS === */
+    .stSuccess {
+        background: linear-gradient(-45deg, #56ab2f, #a8e063);
+        background-size: 200% 200%;
+        animation: alertGlow 4s ease-in-out infinite;
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        font-weight: 600;
+        border: none;
+    }
+    
+    .stError {
+        background: linear-gradient(-45deg, #f093fb, #f5576c);
+        background-size: 200% 200%;
+        animation: alertGlow 4s ease-in-out infinite;
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        font-weight: 600;
+        border: none;
+    }
+    
+    .stWarning {
+        background: linear-gradient(-45deg, #f2994a, #f2c94a);
+        background-size: 200% 200%;
+        animation: alertGlow 4s ease-in-out infinite;
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        font-weight: 600;
+        border: none;
+    }
+    
+    .stInfo {
+        background: linear-gradient(-45deg, #4facfe, #00f2fe);
+        background-size: 200% 200%;
+        animation: alertGlow 4s ease-in-out infinite;
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        font-weight: 600;
+        border: none;
+    }
+    
+    @keyframes alertGlow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    /* === CODE BLOCKS === */
+    .stCodeBlock {
+        background: rgba(255,255,255,0.05) !important;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    /* === LATEX === */
+    .katex {
+        color: white !important;
+    }
+    
+    /* === SIDEBAR === */
+    .css-1d391kg, .css-1lcbmhc {
+        background: rgba(255,255,255,0.03);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    /* === RESPONSIVE TWEAKS === */
+    @media (max-width: 768px) {
+        .stSlider > div {
+            padding: 0.5rem;
+        }
+        .stButton > button {
+            width: 100%;
+        }
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
+
 st.title("📈 Quadratic Functions: y = ax² + bx + c")
 
 # Initialize session state
