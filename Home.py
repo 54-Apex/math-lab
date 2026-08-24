@@ -6,7 +6,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("📐 Math Lab - Interactive Math Explorers")
+st.title(" Math Lab - Interactive Math Explorers")
 
 st.markdown("""
 Welcome to the Math Lab! Explore math through interactive graphs and challenges.
@@ -34,17 +34,10 @@ Welcome to the Math Lab! Explore math through interactive graphs and challenges.
 
 👉 **Click the link above to start!**
 
----
 
-### 🎯 Challenge Yourself!
 
-Both apps include a **Challenge Mode** that tests your understanding. Can you get a perfect score?
 
----
 
-**Created with ❤️ for Mathematics Students**
-
-*Built using Python, Streamlit, and Sympy*
 """)
 
 st.divider()
