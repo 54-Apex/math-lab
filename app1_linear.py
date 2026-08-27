@@ -18,82 +18,43 @@ st.set_page_config(
 # CUSTOM CSS (TIGHT PADDING & MOBILE POLISH)
 # ============================================
 st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    
-    html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
-    
-    /* Hide Branding & Top Header Space */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden; height: 0px !important;}
-    .stDeployButton {display: none;}
-    
-    /* REMOVE TOP WHITE SPACE / GAP */
-    .block-container {
-        padding-top: 0.5rem !important;
-        padding-bottom: 2rem !important;
-        max-width: 1200px;
+    <style>
+    /* Force high contrast text on dark backgrounds */
+    .stAppViewContainer, .stApp {
+        background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%) !important;
+        color: #F8FAFC !important;
     }
     
-    /* App Background Gradient */
-    .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%) !important;
+    /* Ensure headers and markdown text are bright white/light gray */
+    h1, h2, h3, h4, h5, h6, p, label, span {
+        color: #F8FAFC !important;
     }
     
-    /* Glass Cards */
-    div[data-testid="stColumn"] > div {
-        background: rgba(30, 41, 59, 0.7) !important;
-        backdrop-filter: blur(12px) !important;
-        border-radius: 16px !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding: 1.25rem !important;
+    /* Make LaTeX math readable */
+    .katex {
+        color: #60A5FA !important; /* Soft blue highlight for math */
+        font-size: 1.2rem !important;
     }
     
-    /* Glow Action Buttons */
-    .stButton > button {
-        background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 30px !important;
-        padding: 0.5rem 1.5rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5) !important;
-    }
-    
-    /* Input Fields */
-    .stTextInput input {
-        background: rgba(15, 23, 42, 0.6) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        color: #f8fafc !important;
-        border-radius: 8px !important;
+    /* Subtitles / Secondary text */
+    .caption-text {
+        color: #94A3B8 !important;
     }
 
-    /* MOBILE SPECIFIC OPTIMIZATIONS */
-    @media (max-width: 768px) {
-        .block-container {
-            padding-top: 0.2rem !important;
-            padding-left: 0.8rem !important;
-            padding-right: 0.8rem !important;
-        }
-        div[data-testid="stColumn"] > div {
-            padding: 0.8rem !important;
-            margin-bottom: 0.5rem !important;
-        }
-        .stButton > button {
-            width: 100% !important;
-        }
-        h1 {
-            font-size: 1.6rem !important;
-        }
+    /* Make cards/containers responsive with visible borders */
+    div[data-testid="stVerticalBlock"] > div[style*="background-color"] {
+        background-color: rgba(30, 41, 59, 0.7) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px;
+        padding: 1rem !important;
     }
-</style>
+    
+    /* Slider styling for mobile touch target */
+    .stSlider > div {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 # ============================================
